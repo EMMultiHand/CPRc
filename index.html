@@ -201,16 +201,21 @@ _flutter.loader.load({
   </div>
 
   <script>
-    window.addEventListener('flutter-first-frame', function () {
-      document.getElementById('loading').style.display = 'none';
-    });
+    function hideLoading() {
+      var loading = document.getElementById('loading');
+      if (loading) loading.style.display = 'none';
+    }
+    window.addEventListener('flutter-first-frame', hideLoading);
+    // Some mobile CanvasKit/WebView combinations do not dispatch the event;
+    // do not leave a working Flutter view permanently covered by the splash.
+    window.setTimeout(hideLoading, 8000);
   </script>
 
 
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=afa85346008b', {updateViaCache: 'none'})
+        navigator.serviceWorker.register('flutter_service_worker.js?v=fa2761814e3e', {updateViaCache: 'none'})
           .then(function (registration) { return registration.update(); })
           .catch(function (error) { console.warn('PWA service worker registration failed:', error); });
       });

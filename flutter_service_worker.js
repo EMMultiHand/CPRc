@@ -1,5 +1,5 @@
 /* Generated local PWA cache for the Russian Cyberpunk Red Companion. */
-const CACHE_NAME = 'cpr-ru-afa85346008b';
+const CACHE_NAME = 'cpr-ru-fa2761814e3e';
 const CACHE_PREFIX = 'cpr-ru-';
 
 self.addEventListener('install', (event) => {
