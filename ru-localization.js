@@ -47,6 +47,7 @@
   // the trimmed string; $1..$n are substituted with the captured groups.
   var RULES = [
     [/^Tech Level\s+(\d+)$/i, 'Технологический уровень $1'],
+    [/^Quickhack\s+\(DV\s*(\d+)\)$/i, 'Квикхак (СЛ$1)'],
     [/^DV\s*\/\s*Time$/i, 'СЛ/Время'],
     [/^(\d+)\s+Humanity$/i, 'Человечность: $1'],
     [/^(\d+)\s+Reputation$/i, 'Репутация: $1'],
