@@ -46,6 +46,8 @@
   // Dynamic strings that are assembled at runtime. Patterns are matched against
   // the trimmed string; $1..$n are substituted with the captured groups.
   var RULES = [
+    [/^Tech Level\s+(\d+)$/i, 'Технологический уровень $1'],
+    [/^DV\s*\/\s*Time$/i, 'СЛ/Время'],
     [/^(\d+)\s+Humanity$/i, 'Человечность: $1'],
     [/^(\d+)\s+Reputation$/i, 'Репутация: $1'],
     [/^(\d+)\s+LUCK$/i, 'Удача: $1'],
@@ -59,7 +61,7 @@
     [/^Round (\d+)$/i, 'Раунд $1'],
     [/^Day (\d+)$/i, 'День $1'],
     [/^(\d+)\s+IP$/i, '$1 ОУ'],
-    [/^DV(\d+)$/i, 'СЛ$1'],
+    [/^DV\s*(\d+)$/i, 'СЛ$1'],
     [/^(\d+)\s+XP$/i, '$1 ОП']
   ];
 
