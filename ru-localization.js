@@ -24,6 +24,24 @@
     clothing: 'новую одежду',
     programs: 'новые программы'
   };
+  var FASHION_NAMES = {
+    'Asia Pop': 'Азиатский поп',
+    'Bag Lady Chic': 'Стиль бродяжки',
+    'Bohemian': 'Богемный',
+    'Businesswear': 'Деловая одежда',
+    'Gang Colors': 'Цвета банды',
+    'Generic Chic': 'Универсальный шик',
+    'High Fashion': 'Высокая мода',
+    'Leisurewear': 'Одежда для отдыха',
+    'Nomad Leathers': 'Кожа кочевников',
+    'Urban Flash': 'Городской шик'
+  };
+  var CLOTHING_ITEMS = {
+    'Bottoms': 'брюки', 'Tops': 'верх', 'Jacket': 'куртка', 'Footwear': 'обувь',
+    'Jewelry': 'украшения', 'Mirrorshades': 'зеркальные очки', 'Glasses': 'очки',
+    'Contact Lenses': 'контактные линзы', 'ContactLenses': 'контактные линзы',
+    'Hats': 'головные уборы', 'Gloves': 'перчатки'
+  };
 
   // Dynamic strings that are assembled at runtime. Patterns are matched against
   // the trimmed string; $1..$n are substituted with the captured groups.
@@ -57,6 +75,13 @@
     var core = s.slice(start, end);
     var hit = dict[core];
     if (hit !== undefined) return s.slice(0, start) + hit + s.slice(end);
+
+    var fashionItem = core.match(/^(Asia Pop|Bag Lady Chic|Bohemian|Businesswear|Gang Colors|Generic Chic|High Fashion|Leisurewear|Nomad Leathers|Urban Flash)s+(Bottoms|Tops|Jacket|Footwear|Jewelry|Mirrorshades|Glasses|Contact Lenses|ContactLenses|Hats|Gloves)$/);
+    if (fashionItem) {
+      return s.slice(0, start) + FASHION_NAMES[fashionItem[1]] + ': ' + CLOTHING_ITEMS[fashionItem[2]] + s.slice(end);
+    }
+    var eurobucks = core.match(/^(d+)s+Eurobucks Remaining$/i);
+    if (eurobucks) return s.slice(0, start) + 'Осталось евро-баксов: ' + eurobucks[1] + s.slice(end);
 
     // The inventory empty state appends its category at runtime.
     var storePrompt = core.match(/^Press the Store button below to purchase new (.+).$/i);
