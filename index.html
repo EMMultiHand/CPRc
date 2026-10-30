@@ -210,7 +210,8 @@ _flutter.loader.load({
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=afa85346008b')
+        navigator.serviceWorker.register('flutter_service_worker.js?v=afa85346008b', {updateViaCache: 'none'})
+          .then(function (registration) { return registration.update(); })
           .catch(function (error) { console.warn('PWA service worker registration failed:', error); });
       });
     }
