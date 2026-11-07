@@ -56,7 +56,14 @@
     [/^(\d+)\s+Slots Remaining$/i, 'Осталось $1 слотов'],
     [/^Version ([\d.]+)$/i, 'Версия $1'],
     [/^NET Actions Per Turn:\s*(\d+)$/i, 'Сетевых действий за ход: $1'],
-    [/^Stopping Power:\s*(\d+)$/i, 'Останавливающая сила: $1'],
+    [/^Stopping Power:\s*(\d+)$/i, 'Останавливающая способность: $1'],
+    [/^STOPPING POWER:\s*(\d+)$/i, 'ОСТАНАВЛИВАЮЩАЯ СПОСОБНОСТЬ: $1'],
+    [/^SP:\s*(\d+)$/i, 'ОС: $1'],
+    [/^(\d+)\s+SP$/i, '$1 ОС'],
+    [/^Hit Points:\s*(\d+)$/i, 'Пункты здоровья: $1'],
+    [/^HP:\s*(\d+)$/i, 'ПЗ: $1'],
+    [/^(\d+)\s+HP$/i, '$1 ПЗ'],
+    [/^Death Save Penalty:\s*(.+)$/i, 'Штраф к спасброску от смерти: $1'],
     [/^(\d+) \(Critical Roll\)\s*\n\+\s*(\d+) \(Interface\)$/i, '$1 (критический бросок)\n+ $2 (Интерфейс)'],
     [/^Turn (\d+)$/i, 'Ход $1'],
     [/^Round (\d+)$/i, 'Раунд $1'],
@@ -79,15 +86,15 @@
     var hit = dict[core];
     if (hit !== undefined) return s.slice(0, start) + hit + s.slice(end);
 
-    var fashionItem = core.match(/^(Asia Pop|Bag Lady Chic|Bohemian|Businesswear|Gang Colors|Generic Chic|High Fashion|Leisurewear|Nomad Leathers|Urban Flash)s+(Bottoms|Tops|Jacket|Footwear|Jewelry|Mirrorshades|Glasses|Contact Lenses|ContactLenses|Hats|Gloves)$/);
+    var fashionItem = core.match(/^(Asia Pop|Bag Lady Chic|Bohemian|Businesswear|Gang Colors|Generic Chic|High Fashion|Leisurewear|Nomad Leathers|Urban Flash)\s+(Bottoms|Tops|Jacket|Footwear|Jewelry|Mirrorshades|Glasses|Contact Lenses|ContactLenses|Hats|Gloves)$/);
     if (fashionItem) {
       return s.slice(0, start) + FASHION_NAMES[fashionItem[1]] + ': ' + CLOTHING_ITEMS[fashionItem[2]] + s.slice(end);
     }
-    var eurobucks = core.match(/^(d+)s+Eurobucks Remaining$/i);
-    if (eurobucks) return s.slice(0, start) + 'Осталось евро-баксов: ' + eurobucks[1] + s.slice(end);
+    var eurobucks = core.match(/^(\d+)\s+Eurobucks Remaining$/i);
+    if (eurobucks) return s.slice(0, start) + 'Осталось евробаксов: ' + eurobucks[1] + s.slice(end);
 
     // The inventory empty state appends its category at runtime.
-    var storePrompt = core.match(/^Press the Store button below to purchase new (.+).$/i);
+    var storePrompt = core.match(/^Press the Store button below to purchase new (.+)\.$/i);
     if (storePrompt) {
       var category = STORE_CATEGORY[storePrompt[1].toLowerCase()];
       if (category) {
