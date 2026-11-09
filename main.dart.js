@@ -183920,8 +183920,9 @@ r.push(A.bu(new A.N(B.aRb,A.ar5(A.a([p,o,B.aCh,A.m(n.f,m,m,m,m,m,m,m,q.Q,m,m,m)]
 r=A.a([A.aN(r,B.dB,B.B,B.N,0,m,m)],s)
 r=A.ar5(r)
 q=A.e1(!1,A.m("View licenses",m,m,m,m,m,m,m,m,m,m,m),m,m,!0,m,new A.aRj(n,a),m,m)
+var languageAction=A.e1(!1,A.m(window.__RU_LANG__==="en"?"Language: English":"Язык: Русский",m,m,m,m,m,m,m,m,m,m,m),m,m,!0,m,{$0:function(){var next=window.__RU_LANG__==="en"?"ru":"en";try{window.localStorage.setItem("cpr.ru.lang",next)}catch(e){}window.location.reload()},$S:0},m,m)
 var devPremiumAction=A.e1(!1,A.m("Премиум для разработчика: "+(window.__RU_DEV_PREMIUM__?"ВКЛ":"ВЫКЛ"),m,m,m,m,m,m,m,m,m,m,m),m,m,!0,m,{$0:function(){var enabled=window.__RU_DEV_PREMIUM__!==true;window.__RU_DEV_PREMIUM__=enabled;try{window.localStorage.setItem("cpr.ru.devPremium",enabled?"1":"0")}catch(e){}window.location.reload()},$S:0},m,m)
-return A.Zd(A.a([q,devPremiumAction,A.e1(!1,A.m("Close",m,m,m,m,m,m,m,m,m,m,m),m,m,!0,m,new A.aRk(a),m,m)],s),r,m,m,!0,m)}}
+return A.Zd(A.a([q,languageAction,devPremiumAction,A.e1(!1,A.m("Close",m,m,m,m,m,m,m,m,m,m,m),m,m,!0,m,new A.aRk(a),m,m)],s),r,m,m,!0,m)}}
 A.aRj.prototype={
 $0(){var s=this.a
 A.dmw(s.e,s.f,s.c,s.d,this.b)},
